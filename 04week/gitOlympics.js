@@ -1,5 +1,6 @@
 'use strict';
-  const Olympians = ["Michael Phelps", "Simone Biles", "Aly Raisman", "Shawn Johnson", "Carl Lewis"]
+const Olympians = ["Michael Phelps", "Simone Biles", "Aly Raisman", "Shawn Johnson", "Carl Lewis"]
+
 const printListOfOlympians = (arr) => {
   arr.forEach((olympian)=>{
     console.log(olympian)
