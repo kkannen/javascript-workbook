@@ -29,8 +29,8 @@ const pigLatin = (word) => {
   const vowel = ['a', 'e', 'i', 'o', 'u', 'y']; //all the vowels--including the sometimes ones
   const formattedWord = word.toLowerCase().trim(); //lowercase word, nospaces
   const letters = formattedWord.split(''); //makes array out of letters in word
-  for (i = 0; i < letters.length; i++){
-    for (j = 0; j < vowel.length; j++){
+  for (let i = 0; i < letters.length; i++){
+    for (let j = 0; j < vowel.length; j++){
       const indexOfVowel = letters.indexOf(vowel[j])
       let firstLetters = ''
       if(letters[0] === vowel[5]){ //cases in which the first letter of a word is 'y'
