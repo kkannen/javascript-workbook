@@ -6,6 +6,51 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
+/*
+CODE PLAN
+------------------------
+This game should
+  --place a piece every turn -- either X or O
+    --splice(column, row, playerTurn)
+  --should alternate pieces between turns
+    playerTurn = "o"
+  --should check for different types of wins
+    --diagonalWin
+    EXAMPLE
+    board = [
+      ['X', ' ', ' '],
+      [' ', 'X', ' '],
+      [' ', ' ', 'X']
+    ];
+    or
+    --board[0][0] && board[0][1] && [board[0][2]] are all the same
+
+    --horizontalWin
+    EXAMPLE
+    board = [
+      ['X', 'X', 'X'],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+
+    if board[].every() === x or o
+
+    --verticalWin
+    EXAMPLE
+    board = [
+      ['X', ' ', ' '],
+      ['X', ' ', ' '],
+      ['X', ' ', ' ']
+    ];
+
+    if board[0][0] === board[0][1] === board[0][2] or
+    board[1][0] === board[1][1] === board[1][2] or
+    board[2][0] === board[2][1] === board[2][2]
+
+*/
+
+
 let board = [
   [' ', ' ', ' '],
   [' ', ' ', ' '],
