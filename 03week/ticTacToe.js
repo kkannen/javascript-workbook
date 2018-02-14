@@ -68,15 +68,22 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-const piece = (playerPiece) => {
-  return playerPiece === playerTurn;
+const pieceX = (playerPiece) => {
+  return playerPiece === 'X';
+}
+
+const pieceO = (playerPiece) => {
+  return playerPiece === 'O';
 }
 
 const horizontalWin = () => {
-  if (board[0].every(piece) || board[1].every(piece) || board[2].every(piece)) {
+  if (board[0].every(pieceX) || board[1].every(pieceX) || board[2].every(pieceX)) {
+    return true;
+  } else if (board[0].every(pieceO) || board[1].every(pieceO) || board[2].every(pieceO)){
     return true;
   }
 }
+
 
 const verticalWin = () => {
   if (board[0][0] === board[1][0] && board[0][0] === board[2][0]) {
@@ -98,7 +105,7 @@ const diagonalWin = () => {
 
 const checkForWin = () => {
   if (horizontalWin()) {
-    console.log(`${playerTurn} wins!`)
+    console.log(`${playerTurn} wins!`);
     startNewGame();
     return true;
   } else if (verticalWin()) {
@@ -135,7 +142,7 @@ const ticTacToe = (row, column) => {
     switchPlayers();
     return board
   }
-
+  checkForWin();
 }
 
 const getPrompt = () => {
