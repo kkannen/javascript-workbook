@@ -142,7 +142,7 @@ const ticTacToe = (row, column) => {
     switchPlayers();
     return board
   }
-  checkForWin();
+
 }
 
 const getPrompt = () => {
