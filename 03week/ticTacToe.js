@@ -72,23 +72,23 @@ const piece = (playerPiece) => {
   return playerPiece === playerTurn;
 }
 
-function horizontalWin() {
-  if (board[0].every(piece)|| board[1].every(piece) || board[2].every(piece)) {
+const horizontalWin = () => {
+  if (board[0].every(piece) || board[1].every(piece) || board[2].every(piece)) {
     return true;
   }
 }
 
-function verticalWin() {
-  if (board[0][0] === board[0][1] && board[0][0] === board[0][2]) {
+const verticalWin = () => {
+  if (board[0][0] === board[1][0] && board[0][0] === board[2][0]) {
     return true;
-  } else if (board[1][0] === board[1][1] && board[1][0] === board[1][2]) {
+  } else if (board[0][1] === board[1][1] && board[0][1] === board[2][1]) {
     return true;
-  } else if (board[2][0] === board[2][1] && board[2][0] === board[2][2]) {
+  } else if (board[0][2] === board[1][2] && board[0][2] === board[2][2]) {
     return true;
   }
 }
 
-function diagonalWin() {
+const diagonalWin = () => {
   if (board[0][0] === board[1][1] && board[0][0] === board[2][2]) {
     return true;
   } else if (board[0][2] === board[1][1] && board[0][2] === board[2][0]) {
@@ -96,18 +96,24 @@ function diagonalWin() {
   }
 }
 
-function checkForWin() {
+const checkForWin = () => {
   if (horizontalWin()) {
-    return startNewGame();
+    console.log(`${playerTurn} wins!`)
+    startNewGame();
+    return true;
   } else if (verticalWin()) {
-    return startNewGame();
+    console.log(`${playerTurn} wins!`)
+    startNewGame();
+    return true;
   } else if (diagonalWin()){
-    return startNewGame();
+    console.log(`${playerTurn} wins!`)
+    startNewGame();
+    return true;
   }
 }
 
 const startNewGame = () => {
-  console.Log('NEW GAME');
+  console.log('NEW GAME');
   board = [
     [' ', ' ', ' '],
     [' ', ' ', ' '],
@@ -115,23 +121,24 @@ const startNewGame = () => {
   ];
 }
 
-function ticTacToe(row, column) {
-  if (validInput()) {
-    if (board[row][column] === ' ') {
-      if (playerTurn = 'X') {
-        board[row].splice(column, column, playerTurn)
-        playerTurn = 'O'
-        return checkForWin();
-      } else {
-        board[row].splice(column, column, playerTurn)
-        playerTurn = 'X'
-        return checkForWin()
-      }
-    }
+const switchPlayers = () => {
+  if (playerTurn = 'X') {
+    playerTurn = 'O'
+  } else {
+    playerTurn = 'X'
   }
 }
 
-function getPrompt() {
+const ticTacToe = (row, column) => {
+  if(board[row][column] === ' '){
+    board[row].splice(column, 1, playerTurn)
+    switchPlayers();
+    return board
+  }
+
+}
+
+const getPrompt = () => {
   printBoard();
   console.log("It's Player " + playerTurn + "'s turn.");
   rl.question('row: ', (row) => {
@@ -140,9 +147,7 @@ function getPrompt() {
       getPrompt();
     });
   });
-
 }
-
 
 
 // Tests
