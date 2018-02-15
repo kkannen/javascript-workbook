@@ -105,15 +105,15 @@ const diagonalWin = () => {
 
 const checkForWin = () => {
   if (horizontalWin()) {
-    console.log(`${playerTurn} wins!`);
+    console.log('horizontal win');
     startNewGame();
     return true;
   } else if (verticalWin()) {
-    console.log(`${playerTurn} wins!`)
+    console.log('vertical win')
     startNewGame();
     return true;
   } else if (diagonalWin()){
-    console.log(`${playerTurn} wins!`)
+    console.log('diagonal win')
     startNewGame();
     return true;
   }
@@ -142,7 +142,7 @@ const ticTacToe = (row, column) => {
     switchPlayers();
     return board
   }
-
+  checkForWin();
 }
 
 const getPrompt = () => {
