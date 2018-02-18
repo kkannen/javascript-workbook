@@ -10,7 +10,22 @@ let jobTypes = {
 };
 
 // Your code here
+/*
+two classes
+crewmember --crewMember1, crewMember2
+  name lewis
+  job --pilot, mechanic, commander, programmer
+  specialSkill -- chemistry geology
+  Ship --null
+  entership(will add crewmembers to crew array)
 
+ship -- MAV, hermes
+  name -- mars ascent vehicle
+  type -- type, repair, main, any
+  ability -- ascend into low orbit and interplanetary space travel
+  crew []
+  missionStatement(probably prints the ship's mission mission statement)
+*/
 //tests
 if (typeof describe === 'function'){
   describe('CrewMember', function(){
