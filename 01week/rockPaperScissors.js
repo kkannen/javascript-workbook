@@ -9,21 +9,21 @@ const rl = readline.createInterface({
 
 const handOneWin = (hand1, hand2) => {
   if (hand1 === "rock" && hand2 === "scissors") {
-    return true
+    return true;
   } else if (hand1 === "paper" && hand2 === "rock") {
-    return true
+    return true;
   } else if (hand1 === "scissors" && hand2 === "paper"){
-    return true
+    return true;
   }
 }
 
 const handTwoWin = (hand1, hand2) => {
   if (hand2 === "rock" && hand1 === "scissors") {
-    return true
+    return true;
   } else if (hand2 === "paper" && hand1 === "rock") {
-    return true
+    return true;
   } else if (hand2 === "scissors" && hand1 === "paper"){
-    return true
+    return true;
   }
 }
 
@@ -32,16 +32,16 @@ function rockPaperScissors(hand1, hand2) {
   hand2.toLowerCase().trim();
   if (hand1 === hand2) {
     console.log("It's a tie")
-    return true
+    return true;
   } else if (handOneWin(hand1, hand2)) {
     console.log("Hand one wins")
-    return true
+    return true;
   } else if (handTwoWin(hand1, hand2)) {
     console.log("Hand 2 wins!")
-    return true
+    return true;
   } else {
     console.log("invalid input, dummy")
-    return true
+    return true;
   }
 }
 
