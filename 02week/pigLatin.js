@@ -23,30 +23,22 @@ CODE PLAN
         -join the result to create a string of the translated word
 */
 
-
-//PIG LATIN TRANSLATOR FUNCTION
 const pigLatin = (word) => {
-  const vowel = ['a', 'e', 'i', 'o', 'u', 'y']; //all the vowels--including the sometimes ones
-  const formattedWord = word.toLowerCase().trim(); //lowercase word, nospaces
-  const letters = formattedWord.split(''); //makes array out of letters in word
-  for (let i = 0; i < letters.length; i++){
-    for (let j = 0; j < vowel.length; j++){
-      const indexOfVowel = letters.indexOf(vowel[j])
-      let firstLetters = ''
-      if(letters[0] === vowel[5]){ //cases in which the first letter of a word is 'y'
-        return word.slice(1) + 'yay'
-      } else if (letters[0] === vowel[j]) { //cases in which first letter is a vowel
-        return word + 'yay'
-      } else if (letters[i] === vowel[j] && letters.indexOf(vowel[j] > 0)){ //cases in which first letter(s) is/are consonant(s)
-        firstLetters = letters.splice(0, indexOfVowel).join('') //chops consonants off the beginning of letters array, and converts them to string
-        const lettersToEnd = letters.push(firstLetters + 'ay') //pushes firstLetters + 'ay' to end of word
-        const translatedWord = letters.join('') //converts mutated array to string
-        return translatedWord
-      }//if statement
-    }//vowels loop
-  }//letters loop
-}//pigLatin
-
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y'];
+  word = word.trim().toLowerCase()
+  const letters = word.split('')
+  if (letters[0] === vowels[5]) {
+    return word.slice(1) + 'yay'
+  } else if (vowels.includes(letters[0])) {
+    return word + 'yay'
+  } else {
+    const firstVowel = letters.findIndex(letter => vowels.includes(letter));
+    const firstLetters = (letters.splice(0, firstVowel)).join('')
+    const translatedWordAsArr = letters.push(firstLetters + 'ay')
+    const translatedWord = letters.join('')
+    return(translatedWord)
+  }
+}
 
 function getPrompt() {
   rl.question('word ', (answer) => {
