@@ -6,6 +6,51 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+
+/*
+CODE PLAN
+------------------------
+This game should
+  --place a piece every turn -- either X or O
+    --splice(column, row, playerTurn)
+  --should alternate pieces between turns
+    playerTurn = "o"
+  --should check for different types of wins
+    --diagonalWin
+    EXAMPLE
+    board = [
+      ['X', ' ', ' '],
+      [' ', 'X', ' '],
+      [' ', ' ', 'X']
+    ];
+    or
+    --board[0][0] && board[0][1] && [board[0][2]] are all the same
+
+    --horizontalWin
+    EXAMPLE
+    board = [
+      ['X', 'X', 'X'],
+      [' ', ' ', ' '],
+      [' ', ' ', ' ']
+    ];
+
+    if board[].every() === x or o
+
+    --verticalWin
+    EXAMPLE
+    board = [
+      ['X', ' ', ' '],
+      ['X', ' ', ' '],
+      ['X', ' ', ' ']
+    ];
+
+    if board[0][0] === board[0][1] === board[0][2] or
+    board[1][0] === board[1][1] === board[1][2] or
+    board[2][0] === board[2][1] === board[2][2]
+
+*/
+
+
 let board = [
   [' ', ' ', ' '],
   [' ', ' ', ' '],
@@ -23,27 +68,84 @@ function printBoard() {
   console.log('2 ' + board[2].join(' | '));
 }
 
-function horizontalWin() {
-  // Your code here
+const pieceX = (playerPiece) => {
+  return playerPiece === 'X';
 }
 
-function verticalWin() {
-  // Your code here
+const pieceO = (playerPiece) => {
+  return playerPiece === 'O';
 }
 
-function diagonalWin() {
-  // Your code here
+const horizontalWin = () => {
+  if (board[0].every(pieceX) || board[1].every(pieceX) || board[2].every(pieceX)) {
+    return true;
+  } else if (board[0].every(pieceO) || board[1].every(pieceO) || board[2].every(pieceO)){
+    return true;
+  }
 }
 
-function checkForWin() {
-  // Your code here
+
+const verticalWin = () => {
+  if (board[0][0] === board[1][0] && board[0][0] === board[2][0]) {
+    return true;
+  } else if (board[0][1] === board[1][1] && board[0][1] === board[2][1]) {
+    return true;
+  } else if (board[0][2] === board[1][2] && board[0][2] === board[2][2]) {
+    return true;
+  }
 }
 
-function ticTacToe(row, column) {
-  // Your code here
+const diagonalWin = () => {
+  if (board[0][0] === board[1][1] && board[0][0] === board[2][2]) {
+    return true;
+  } else if (board[0][2] === board[1][1] && board[0][2] === board[2][0]) {
+    return true;
+  }
 }
 
-function getPrompt() {
+const checkForWin = () => {
+  if (horizontalWin()) {
+    console.log('horizontal win');
+    startNewGame();
+    return true;
+  } else if (verticalWin()) {
+    console.log('vertical win')
+    startNewGame();
+    return true;
+  } else if (diagonalWin()){
+    console.log('diagonal win')
+    startNewGame();
+    return true;
+  }
+}
+
+const startNewGame = () => {
+  console.log('NEW GAME');
+  board = [
+    [' ', ' ', ' '],
+    [' ', ' ', ' '],
+    [' ', ' ', ' ']
+  ];
+}
+
+const switchPlayers = () => {
+  if (playerTurn = 'X') {
+    playerTurn = 'O'
+  } else {
+    playerTurn = 'X'
+  }
+}
+
+const ticTacToe = (row, column) => {
+  if(board[row][column] === ' '){
+    board[row].splice(column, 1, playerTurn)
+    switchPlayers();
+    return board
+  }
+  checkForWin();
+}
+
+const getPrompt = () => {
   printBoard();
   console.log("It's Player " + playerTurn + "'s turn.");
   rl.question('row: ', (row) => {
@@ -52,9 +154,7 @@ function getPrompt() {
       getPrompt();
     });
   });
-
 }
-
 
 
 // Tests
