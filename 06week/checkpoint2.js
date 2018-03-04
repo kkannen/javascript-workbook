@@ -8,7 +8,7 @@ const nums = strNums.map(item => Number(item))
 const sumEvens = nums.filter((item => item % 2 === 0)).reduce((total, numNum) => total + numNum)
 console.log(`sum of all even numbers: ${sumEvens} \n`);
 
-// Return an object with counts of instances of each number
+//Return an object with counts of instances of each number
 const numCount = {
   0: 0,
   1: 0,
@@ -22,10 +22,14 @@ const numCount = {
   9: 0,
 };
 
-Object.keys(numCount).forEach((key) => {
-  const counter = nums.filter(num => num == key).length
-  numCount[key] = counter
-})
+const counter = (obj) => {
+  Object.keys(obj).forEach((key) => {
+    const counter = nums.filter(num => num == key).length
+    obj[key] = counter
+  });
+}
+counter(numCount);
+
 console.log('Final number count:')
 console.log(numCount)
 
