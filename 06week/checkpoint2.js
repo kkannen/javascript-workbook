@@ -5,7 +5,7 @@ const strNums = ["1","4","1","5","9","2","6","5","3","5","8","9","7","9","3","2"
 const nums = strNums.map(item => Number(item))
 
 // Find the sum of the even values in array
-const sumEvens = nums.filter((item => item % 2 === 0)).reduce((total, numNum) => total + numNum)
+const sumEvens = nums.filter((item => item % 2 === 0)).reduce((acc, currentNum) => acc + currentNum)
 console.log(`sum of all even numbers: ${sumEvens} \n`);
 
 //Return an object with counts of instances of each number
@@ -33,11 +33,8 @@ const counter = (obj) => {
   });
 }
 counter(numCount);
-
 console.log('Final number count:')
 console.log(numCount)
-
-
 
 // Find the index of the first "Austin" value (the value plus its index equals 512)
 const atxIdx = nums.findIndex((num, index) => {
