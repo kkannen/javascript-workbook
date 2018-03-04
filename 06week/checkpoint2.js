@@ -22,6 +22,10 @@ const numCount = {
   9: 0,
 };
 
+//counter takes and object, puts keys into an array, and for each key, finds matches to that key in the nums array
+//when a match is found, it is added to an array of matches for that key
+//when all matches are found, length of array is stored in variable counter
+//counter for each key in numCount is set to the value for that key
 const counter = (obj) => {
   Object.keys(obj).forEach((key) => {
     const counter = nums.filter(num => num == key).length
