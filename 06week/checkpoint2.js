@@ -21,7 +21,7 @@ const numCount = {
   7: 0,
   8: 0,
   9: 0,
-};
+}; 
 
 //counter takes and object, puts keys into an array, and for each key, finds matches to that key in the nums array
 //when a match is found, it is added to an array of matches for that key
