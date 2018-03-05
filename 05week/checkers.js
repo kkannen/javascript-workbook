@@ -12,47 +12,56 @@ function Checker() {
   // Your code here
 }
 
-// creates an 8x8 array, filled with null values
-// loop to create the 8 rows
-// push in 8 columns of nulls
-function Board() {
-  this.grid = [];
-  this.createGrid = function() {
+class Board {
+  constructor() {
+    this.grid = []
+  }
+  // method that creates an 8x8 array, filled with null values
+  createGrid() {
+    // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
       this.grid[row] = [];
+      // push in 8 columns of nulls
       for (let column = 0; column < 8; column++) {
         this.grid[row].push(null);
       }
     }
-  };
-  // prints out the board
-  this.viewGrid = function() {
+  }
+  viewGrid() {
+    // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
     for (let row = 0; row < 8; row++) {
+      // we start with our row number in our array
       const rowOfCheckers = [row];
+      // a loop within a loop
       for (let column = 0; column < 8; column++) {
-        if (this.grid[row][column]) {// push the symbol of the check in that location into the array
+        // if the location is "truthy" (contains a checker piece, in this case)
+        if (this.grid[row][column]) {
+          // push the symbol of the check in that location into the array
           rowOfCheckers.push(this.grid[row][column].symbol);
         } else {
+          // just push in a blank space
           rowOfCheckers.push(' ');
         }
       }
+      // join the rowOfCheckers array to a string, separated by a space
       string += rowOfCheckers.join(' ');
+      // add a 'new line'
       string += "\n";
     }
     console.log(string);
-  };
-  this.addCheckers()
+  }
 
+  // Your code here
 }
-function Game() {
 
-  this.board = new Board();
-
-  this.start = function() {
+class Game {
+  constructor() {
+    this.board = new Board;
+  }
+  start() {
     this.board.createGrid();
-    // Your code here
-  };
+  }
 }
 
 function getPrompt() {
@@ -65,14 +74,11 @@ function getPrompt() {
   });
 }
 
-getPrompt();
-
 const game = new Game();
 game.start();
 
 
 // Tests
-
 if (typeof describe === 'function') {
   describe('Game', () => {
     it('should have a board', () => {
@@ -83,8 +89,8 @@ if (typeof describe === 'function') {
     });
   });
 
-  describe('Game.moveChecker()', function () {
-    it('should move a checker', function () {
+  describe('Game.moveChecker()', () => {
+    it('should move a checker', () => {
       assert(!game.board.grid[4][1]);
       game.moveChecker('50', '41');
       assert(game.board.grid[4][1]);
