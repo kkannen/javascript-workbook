@@ -12,47 +12,38 @@ function Checker() {
   // Your code here
 }
 
+// creates an 8x8 array, filled with null values
+// loop to create the 8 rows
+// push in 8 columns of nulls
 function Board() {
   this.grid = [];
-  // creates an 8x8 array, filled with null values
   this.createGrid = function() {
-    // loop to create the 8 rows
     for (let row = 0; row < 8; row++) {
       this.grid[row] = [];
-      // push in 8 columns of nulls
       for (let column = 0; column < 8; column++) {
         this.grid[row].push(null);
       }
     }
   };
-
   // prints out the board
   this.viewGrid = function() {
-    // add our column numbers
     let string = "  0 1 2 3 4 5 6 7\n";
     for (let row = 0; row < 8; row++) {
-      // we start with our row number in our array
       const rowOfCheckers = [row];
-      // a loop within a loop
       for (let column = 0; column < 8; column++) {
-        // if the location is "truthy" (contains a checker piece, in this case)
-        if (this.grid[row][column]) {
-          // push the symbol of the check in that location into the array
+        if (this.grid[row][column]) {// push the symbol of the check in that location into the array
           rowOfCheckers.push(this.grid[row][column].symbol);
         } else {
-          // just push in a blank space
           rowOfCheckers.push(' ');
         }
       }
-      // join the rowOfCheckers array to a string, separated by a space
       string += rowOfCheckers.join(' ');
-      // add a 'new line'
       string += "\n";
     }
     console.log(string);
   };
+  this.addCheckers()
 
-  // Your code here
 }
 function Game() {
 
@@ -73,6 +64,8 @@ function getPrompt() {
     });
   });
 }
+
+getPrompt();
 
 const game = new Game();
 game.start();
