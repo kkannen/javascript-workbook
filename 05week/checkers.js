@@ -8,13 +8,22 @@ const rl = readline.createInterface({
 });
 
 
-function Checker() {
-  // Your code here
+class Checker {
+  constructor(color){
+    if (color === 'red'){
+      this.symbol = 'R';
+      this.color = 'red'
+    } else {
+      this.symbol = 'B'
+      this.color = 'black'
+    }
+  }
 }
 
 class Board {
   constructor() {
-    this.grid = []
+    this.grid = [];
+    this.checkers = [];
   }
   // method that creates an 8x8 array, filled with null values
   createGrid() {
@@ -52,7 +61,30 @@ class Board {
     console.log(string);
   }
 
-  // Your code here
+  startingCheckersToBoard() {
+    for (let row = 0; row < 8; row++){
+      if (row === 3 || row === 4){
+        continue;
+      }
+      for (let column = 0; column < 8; column++) {
+        let color = (row < 3 ? 'red' : 'black');
+        if (row % 2 === 0 && column % 2 === 1) {
+          this.grid[row][column] = new Checker(color);
+          this.checkers.push(new Checker(color))
+        } else if (row % 2 === 1 && column % 2 === 0) {
+          this.grid[row][column] = new Checker(color);
+          this.checkers.push(new Checker(color))
+        }
+      }
+    }
+  }
+  selectChecker(row, column) {
+    return this.grid[row][column];
+  }
+  killChecker(killrow , killcol){
+    this.checkers.pop();
+    return this.grid[killrow][killcol] = null;
+  }
 }
 
 class Game {
@@ -61,6 +93,37 @@ class Game {
   }
   start() {
     this.board.createGrid();
+    this.board.startingCheckersToBoard();
+  };
+
+  moveChecker(start, end) {
+    const checker = this.board.selectChecker(start[0], start[1]);
+    const endSpot = this.board.grid[end[0]][end[1]];
+
+    if (checker) {
+      if (endSpot) {
+
+        console.log('there is already a piece there');
+      }
+      else if(endSpot === null) {
+        if (start[0] - end[0] === 2 || start[0] - end[0] === - 2) {
+          if(checker.symbol === 'R') {
+            let killrow = end[0] - 1;
+            let killcol = end[1] - 1;
+            this.board.killChecker(killrow, killcol)
+          }
+          if(checker.symbol === 'B') {
+            let killrow = start[0] - 1;
+            let killcol = end[1] - 1;
+            this.board.killChecker(killrow , killcol)
+          }
+        }
+        this.board.grid[end[0]][end[1]] = checker;
+        this.board.grid[start[0]][start[1]] = null;
+      }
+    } else {
+      console.log('Please select a starting place with a checker')
+    }
   }
 }
 
