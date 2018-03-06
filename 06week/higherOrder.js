@@ -29,6 +29,7 @@ const filter = (arr, callback) => {
   return filteredArr
 }
 
+//SOME FUNCTION
 const some = (arr, callback) => {
   for (let x = 0; x < arr.length; x++){
     if(callback(arr[x])){
@@ -38,6 +39,7 @@ const some = (arr, callback) => {
   return false
 }
 
+//EVERY FUNCTION
 const every = (arr, callback) => {
   for (let x = 0; x < arr.length; x++){
     if(!callback(arr[x])){
@@ -47,6 +49,7 @@ const every = (arr, callback) => {
   return true;
 }
 
+//TESTS
 if (typeof describe === 'function') {
 
   describe('#forEach()', () => {
