@@ -33,10 +33,10 @@ class CrewMember {
     this.job = job;
     this.specialSkill = specialSkill;
     this.ship = null;
-    this.enterShip = (ship) => {
-      this.ship = ship;
-      ship.crew.push(this)
-    }
+  }
+  enterShip (ship) {
+    this.ship = ship;
+    ship.crew.push(this)
   }
 }
 //crewmembers
@@ -60,7 +60,7 @@ class Ship {
   }
 }
 const mav = new Ship ('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
-let hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
+const hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
 
 
 
