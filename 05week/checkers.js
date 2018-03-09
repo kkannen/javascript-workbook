@@ -143,13 +143,13 @@ class Game {
       else if(endSpace === null) {
         if (start[0] - end[0] === 2 || start[0] - end[0] === - 2) {
           if(checker.symbol === 'R') {
-            let jumpedRow = end[0] - 1;
-            let jumpedColumn = end[1] - 1;
+            const jumpedRow = end[0] - 1;
+            const jumpedColumn = end[1] - 1;
             this.board.jumpChecker(jumpedRow, jumpedColumn)
           }
           if(checker.symbol === 'B') {
-            let jumpedRow = start[0] - 1;
-            let jumpedColumn = end[1] - 1;
+            const jumpedRow = start[0] - 1;
+            const jumpedColumn = end[1] - 1;
             this.board.jumpChecker(jumpedRow , jumpedColumn)
           }
         }
