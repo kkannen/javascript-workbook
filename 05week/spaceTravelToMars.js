@@ -2,7 +2,7 @@
 
 let assert = require('assert');
 
-let jobTypes = {
+const jobTypes = {
   pilot: 'MAV',
   mechanic: 'Repair Ship',
   commander: 'Main Ship',
