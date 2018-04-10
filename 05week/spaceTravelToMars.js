@@ -9,6 +9,7 @@ const jobTypes = {
   programmer: 'Any Ship!'
 };
 
+
 // Your code here
 /*
 two classes
