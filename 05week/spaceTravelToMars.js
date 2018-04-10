@@ -2,14 +2,69 @@
 
 let assert = require('assert');
 
-let jobTypes = {
+const jobTypes = {
   pilot: 'MAV',
   mechanic: 'Repair Ship',
   commander: 'Main Ship',
   programmer: 'Any Ship!'
 };
 
+
 // Your code here
+/*
+two classes
+crewmember --crewMember1, crewMember2
+  name lewis
+  job --pilot, mechanic, commander, programmer
+  specialSkill -- chemistry geology
+  Ship --null
+  entership(will add crewmembers to crew array)
+
+ship -- MAV, hermes
+  name -- mars ascent vehicle
+  type -- type, repair, main, any
+  ability -- ascend into low orbit and interplanetary space travel
+  crew []
+  missionStatement(probably prints the ship's mission mission statement)
+*/
+
+class CrewMember {
+  constructor(name, job, specialSkill){
+    this.name = name;
+    this.job = job;
+    this.specialSkill = specialSkill;
+    this.ship = null;
+  }
+  enterShip (ship) {
+    this.ship = ship;
+    ship.crew.push(this)
+  }
+}
+//crewmembers
+const crewMember1 = new CrewMember ('Rick Martinez', 'Pilot', 'chemistry')
+const crewMember2 = new CrewMember ('Commander Lewis', 'commander', 'geology')
+console.log(crewMember2)
+
+class Ship {
+  constructor(name, type, ability){
+    this.name = name;
+    this.type = type;
+    this.ability = ability;
+    this.crew = []
+  }
+  missionStatement() {
+    if (this.crew.length < 1){
+      return "Can't perform a mission yet."
+    }else{
+      return this.ability
+    }
+  }
+}
+const mav = new Ship ('Mars Ascent Vehicle', 'MAV', 'Ascend into low orbit');
+const hermes = new Ship('Hermes', 'Main Ship', 'Interplanetary Space Travel');
+
+
+
 
 //tests
 if (typeof describe === 'function'){
